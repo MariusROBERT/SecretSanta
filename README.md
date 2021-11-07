@@ -1,7 +1,7 @@
-#Secret Santa
+# Secret Santa
 
 ---
-###What is Secret Santa?
+### What is Secret Santa?
 
 Secret santa is a fun and easy way to get together with your friends and/or family with a gift for them.
 
@@ -9,7 +9,7 @@ The idea is to have a list of friends and/or family members and then randomly se
 
 ---
 
-###How to use this Secret Santa?
+### How to use this Secret Santa?
 
 - Copy the `configExample.json` file and rename it `config.json` then add the partipant's names : you have to add the name of the person and his email address like in the example.
 - You can edit the `textMail` value in the `config.json` file to change the text of the email sent to the person (`{0}` represent the person to whom you will gift and `{1}` represent your name).
@@ -19,7 +19,7 @@ The idea is to have a list of friends and/or family members and then randomly se
 
 ---
 
-###Rules
+### Rules
 There are 3 rules defined in this code:
 - You can't gift yourself (or this will be a sad Christmas)
 - You can't gift your partner if you are in a registred couple in config.json
