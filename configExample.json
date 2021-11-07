@@ -1,0 +1,15 @@
+{
+  "mail" : "example@gmail.com",
+  "password" : "password",
+  "smtp" : "smtp.gmail.com",
+  "port" : "465",
+  "textMail" : "This year, you're Santa Claus,\nFor this Secret Santa, you will have to gift {0}.\nGood luck {1} and merry christmas !",
+  "partipants" : ["Friend1", "Friend2", "Friend3", "Friend4", "Friend5"],
+  "mailList" : {"Friend1":"friend1@gmail.com",
+         "Friend2":"friend2@gmail.com",
+         "Friend3":"friend3@gmail.com",
+         "Friend4":"friend4@gmail.com",
+         "Friend5":"friend5@gmail.com"},
+  "couples" : [["Friend1", "Friend3"], ["Friend2", "Friend4"]],
+  "spoiler" : false
+}
