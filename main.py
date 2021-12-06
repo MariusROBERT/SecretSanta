@@ -2,8 +2,9 @@ import random
 import smtplib
 import ssl
 import json
+import time
 
-configFile = "config.json"
+configFile = "configPerso2.json"
 
 #import config from configPerso.json
 with open(configFile) as json_file:
@@ -18,8 +19,8 @@ smtp_port = config["port"]
 
 textMail = config["textMail"]
 
-participants = list(config["participants"].keys())
-mails = config["mails"]
+participants = list(config["mailList"].keys())
+mails = config["mailList"]
 
 try:
     couples = config["couples"]
@@ -100,6 +101,7 @@ def sendMails(cadeauxL):
         server.login(mail, password)
         for i in list(cadeauxL.keys()):
             server.sendmail(mail, mails[i], textMail.format(cadeauxL[i], i).encode("utf8"))
+            #time.sleep(1)
 
 genF(spoil)
 
