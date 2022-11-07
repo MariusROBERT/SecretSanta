@@ -6,7 +6,6 @@ import time
 
 configFile = "configPerso2.json"
 
-#import config from configPerso.json
 with open(configFile) as json_file:
     config = json.load(json_file)
 
@@ -27,6 +26,11 @@ try:
 except KeyError:
     couples = []
 
+try:
+    old = config["old"]
+except KeyError:
+    old = []
+
 
 
 def gen(cadeauxL):
@@ -42,32 +46,33 @@ def coupleOk(cadeauxL):
     for i in couples:
         if cadeauxL[i[0]] == i[1] or cadeauxL[i[1]] == i[0]:
             return False
-
     return True
 
 
 def soloOk(cadeauxL):
     for key, value in cadeauxL.items():
-        #print(i)
         if key == value:
             return False
-
     return True
 
 
 def reverseOk(cadeauxL):
-    #cadeauxL2 = dict()
     for key, value in cadeauxL.items():
-        #cadeauxL2[value] = key
         if cadeauxL[value] == value:
             return False
+    return True
 
+def oldOk(cadeauxL):
+    for key, value in cadeauxL.items():
+        if key in old.keys():
+            if cadeauxL[key] == old[key]:
+                return False
     return True
 
 
 def affiche(cadeauxL):
     for key, value in cadeauxL.items():
-        print(key + " -> " + value)
+        print("{:>6} -> {}".format(key, cadeauxL[value]))
 
 
 def affiche2(cadeauxL):
@@ -82,6 +87,8 @@ def genF(spoiler):
     while not (coupleOk(cadeauxL) and soloOk(cadeauxL) and reverseOk(cadeauxL)):
         cadeauxL = gen(cadeauxL)
     if spoiler:
+        affiche(cadeauxL)
+        print()
         affiche2(cadeauxL)
     else:
         sendMails(cadeauxL)
@@ -104,7 +111,3 @@ def sendMails(cadeauxL):
             #time.sleep(1)
 
 genF(spoil)
-
-# for i in range(5):
-#     genF()
-#     print()
