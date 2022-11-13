@@ -24,7 +24,7 @@ The idea is to have a list of friends and/or family members and then randomly se
 
 ### Rules
 
-There are 3 rules defined in this code:
+There are 4 rules defined in this code:
 
 - You can't gift yourself (or this will be a sad Christmas)
 - You can't gift your partner if you are in a registred couple in config.json
