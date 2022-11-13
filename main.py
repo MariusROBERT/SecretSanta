@@ -3,8 +3,9 @@ import smtplib
 import ssl
 import json
 import time
+import requests
 
-configFile = "configPerso2.json"
+configFile = "configPerso.json"
 
 with open(configFile) as json_file:
     config = json.load(json_file)
@@ -21,6 +22,8 @@ textMail = config["textMail"]
 participants = list(config["mailList"].keys())
 mails = config["mailList"]
 
+longer = "\_"
+
 try:
     couples = config["couples"]
 except KeyError:
@@ -31,6 +34,10 @@ try:
 except KeyError:
     old = []
 
+try:
+    webhook = config["webhook"]
+except KeyError:
+    webhook = False
 
 
 def gen(cadeauxL):
@@ -58,9 +65,10 @@ def soloOk(cadeauxL):
 
 def reverseOk(cadeauxL):
     for key, value in cadeauxL.items():
-        if cadeauxL[value] == value:
+        if cadeauxL[value] == key:
             return False
     return True
+
 
 def oldOk(cadeauxL):
     for key, value in cadeauxL.items():
@@ -92,6 +100,9 @@ def genF(spoiler):
         affiche2(cadeauxL)
     else:
         sendMails(cadeauxL)
+    if webhook:
+        for gifter, giftee in cadeauxL.items():
+            sendWebhook(gifter, giftee)
 
 
 def getMails(cadeauxL):
@@ -103,11 +114,26 @@ def getMails(cadeauxL):
 context = ssl.create_default_context()
 
 
+def sendWebhook(gifter, giftee):
+    return requests.post(
+        webhook,
+        json={"content": "",
+              "embeds": [
+                  {"title": f"🎁 {gifter} gift 🎁",
+                   "description": f"||`{giftee:<20}`||\nClick only if you're {gifter}",
+                   "color": 14948291
+                   }
+              ]}
+    )
+
+
 def sendMails(cadeauxL):
-    with smtplib.SMTP_SSL(smtp_adress,smtp_port, context=context) as server:
+    with smtplib.SMTP_SSL(smtp_adress, smtp_port, context=context) as server:
         server.login(mail, password)
-        for i in list(cadeauxL.keys()):
-            server.sendmail(mail, mails[i], textMail.format(cadeauxL[i], i).encode("utf8"))
-            #time.sleep(1)
+        for gifter in list(cadeauxL.keys()):
+            server.sendmail(mail, mails[gifter], textMail.format(cadeauxL[gifter], gifter).encode("utf8"))
+
+            time.sleep(1)
+
 
 genF(spoil)

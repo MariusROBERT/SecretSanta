@@ -34,5 +34,6 @@
 	"Friend3": "Friend4",
 	"Friend4": "Friend0 (no longer in the game)",
 	"Friend0": "Friend1"
-  }
+  },
+  "webhook": "https://discord.com/api/webhooks/randomnumbers/randomnumbersagain"
 }

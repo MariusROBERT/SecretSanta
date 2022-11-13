@@ -15,7 +15,8 @@ The idea is to have a list of friends and/or family members and then randomly se
 - You can edit the `textMail` value in the `config.json` file to change the text of the email sent to the person (`{0}` represent the person to whom you will gift and `{1}` represent your name and `\n` are for line breaks).
 - You can add couples if you want to avoid couples gifting their partner (leave it empty if you don't have couples or don't care if they can gift each other), the names in the couple must be exactly the same as the name of the persons.
 - You can add the last draw if you want to avoid a person to gift the same person as last year (leave it empty if you don't care or if it's the first year), the names in the last draw must be exactly the same as the name of the persons.
-- If you want to see the draw, set spoiler to `true` in the `config.json` file (not recommanded if you participate), else it will be sent by email.
+- You can add a discord webhook url to send the draw to a discord channel (leave it empty if you don't want to use it). Webhooks are sent in embed with spoiler.
+- If you want to see the draw, set spoiler to `true` in the `config.json` file (not recommanded if you participate), else it will be sent by email. Discord webhook will always be sent anyways.
 - If `spoiler` is set to false, the draw will be sent by email, so you have to add your email address (and password) in the `config.json` file, the example is made for gmail addresses, but you can configure if for another service. If you use a gmail adresse, you will have to go on https://myaccount.google.com/lesssecureapps and enable the use of less secure apps.
 
 ---
