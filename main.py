@@ -58,7 +58,7 @@ def soloOk(cadeauxL):
 
 def reverseOk(cadeauxL):
     for key, value in cadeauxL.items():
-        if cadeauxL[value] == value:
+        if cadeauxL[value] == key:
             return False
     return True
 
